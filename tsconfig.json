@@ -19,18 +19,6 @@
 		"noUnusedLocals": true,
 		"noUnusedParameters": true,
 		"noFallthroughCasesInSwitch": true,
-		"baseUrl": "./src",
-		"paths": {
-			"@components/*": ["./components/*"],
-			"@constants/*": ["./constants/*"],
-			"@reducers/*": ["./reducers/*"],
-			"@context/*": ["./context/*"],
-			"@assets/*": ["./assets/*"],
-			"@utils/*": ["./utils/*"],
-			"@pages/*": ["./pages/*"],
-			"@hooks/*": ["./hooks/*"],
-			"$types/*": ["./@types/*"]
-		}
 	},
 	"include": ["src", "@testing-library/jest-dom"],
 	"references": [{ "path": "./tsconfig.node.json" }]
