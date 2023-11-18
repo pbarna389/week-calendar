@@ -1,11 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { weatherAPI } from '../hooks'
 
-import daySlice from '../features/daySlice'
+import weekSlice from '../features/weekSlice'
 
 export const calendarStore = configureStore({
   reducer: {
-    testSlice: daySlice,
+    testSlice: weekSlice,
     [weatherAPI.reducerPath]: weatherAPI.reducer,
   },
     middleware: (getDefaultMiddleware) =>

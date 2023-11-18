@@ -1,11 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+interface DailyInter {
+  currentDate: string
+  weatherCode: number
+}
+
 interface WeekInitalStateInter {
-  message: string
+  daily: DailyInter | null
 }
 
 const initialState: WeekInitalStateInter = {
-  message: "ALIVE"
+  daily: null
 }
 
 const weekSlice = createSlice(
@@ -17,7 +22,7 @@ const weekSlice = createSlice(
         console.log(state)
       },
       overwrite: (state, action) => {
-        state.message = action.payload.newMessage
+        state.daily = action.payload.newDaily
       }
     }
   }
