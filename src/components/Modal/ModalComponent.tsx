@@ -23,7 +23,7 @@ export const ModalComponent:FC<ModalProps> = ({ isOpen, onClose, text }) => {
           </ModalBody>
 
           <ModalFooter>
-            <Button colorScheme='blue' mr={3} onClick={onClose}>
+            <Button colorScheme='blue' mr={3} onClick={onClose} margin="0">
               Close
             </Button>
           </ModalFooter>
