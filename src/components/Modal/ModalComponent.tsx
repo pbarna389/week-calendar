@@ -1,6 +1,8 @@
-import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, Button, Center } from "@chakra-ui/react"
-
 import { FC } from "react"
+
+import { Form } from ".."
+
+import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, Button } from "@chakra-ui/react"
 
 interface ModalProps {
   isOpen: boolean
@@ -11,20 +13,19 @@ interface ModalProps {
 export const ModalComponent:FC<ModalProps> = ({ isOpen, onClose, text }) => {
   return (
     <>
-      <Modal blockScrollOnMount={false} isOpen={isOpen} onClose={onClose} isCentered>
+      <Modal blockScrollOnMount={false} isOpen={isOpen} onClose={onClose} isCentered >
         <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Modal Title</ModalHeader>
+        <ModalContent display="flex" alignItems="center" justifyContent="center">
+          <ModalHeader>Add todo for this day: {text}</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <Center>{text}</Center>
+            <Form onClose={onClose} />
           </ModalBody>
 
           <ModalFooter>
             <Button colorScheme='blue' mr={3} onClick={onClose}>
               Close
             </Button>
-            <Button variant='ghost'>Secondary Action</Button>
           </ModalFooter>
         </ModalContent>
       </Modal>
