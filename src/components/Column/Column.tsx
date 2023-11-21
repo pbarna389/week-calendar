@@ -8,16 +8,24 @@ interface ColumnProps {
   weather_code: number
 }
 
+import { useDisclosure } from '@chakra-ui/react'
+import { ModalComponent } from '../Modal'
+
 export const Column:FC<ColumnProps> = ({ text, weather_code }) => {
+  const { onOpen, isOpen, onClose } = useDisclosure()
+
   return (
-    <Container minH='100vh'>
-      <Center>{text}</Center>
-        <Center>
-          <IconContext.Provider value={{ size: "5rem"}}>
-            <Icons weatherCode={weather_code} />
-          </IconContext.Provider>
-          <Button colorScheme='gray'>Add a todo for this day</Button>
-        </Center>
-    </Container>
+    <>
+      <Container>
+        <Center>{text}</Center>
+          <Center>
+            <IconContext.Provider value={{ size: "5rem"}}>
+              <Icons weatherCode={weather_code} />
+            </IconContext.Provider>
+            <Button colorScheme='gray' onClick={onOpen}>Add a todo for this day</Button>
+          </Center>
+      </Container>
+      <ModalComponent isOpen={isOpen} onClose={onClose} text={text} />
+    </>
   )
 }
