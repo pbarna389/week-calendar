@@ -1,6 +1,6 @@
 import { FieldHookConfig, useField } from 'formik'
 
-import { Input, FormLabel, FormErrorMessage, Select } from '@chakra-ui/react'
+import { Input, FormLabel, Select } from '@chakra-ui/react'
 
 interface OtherProps {
   label : string
@@ -16,16 +16,18 @@ export const InputField = (props: OtherProps & FieldHookConfig<any>) => {
       {
         props.isSelect ? 
         <Select {...field}>
+          <option value="select" selected disabled>Select a value</option>
           <option value="low">Low</option>
           <option value="medium">Medium</option>
-          <option value="hight">High</option>
+          <option value="high">High</option>
         </Select>
         :
         <Input {...field} />
       }
-      {meta.touched && meta.error ? (
-        <FormErrorMessage>{meta.error}</FormErrorMessage>
-      ) : null}
+      {
+        meta.touched && meta.error || field.name === 'priority' && !field.value && meta.error &&
+          <div>{meta.error}</div>
+      }
     </>
   )
 }
