@@ -57,7 +57,9 @@ export const ColumnWrapper = () => {
 
         const selectedSlice = returnSlice(idx)
 
-        dispatch(selectedSlice.dispatch.addDayData({ newDaily: newData }))
+        const { addDayData } = selectedSlice.dispatch 
+
+        dispatch(addDayData({ newDaily: newData }))
       })
     }
   }, [data])
