@@ -96,7 +96,7 @@ export const ColumnWrapper = () => {
       <>
         <Grid templateColumns={`repeat(${columnNum}, 1fr)`} gap="1" width="100%" boxSizing='border-box'>
           {
-            data?.daily.time.map((day: string, idx: number) => <Column key={`${day}-${idx}`} text={`${day}`} />)
+            data?.daily.time.map((day: string, idx: number) => <Column key={`${day}-${idx}`} text={`${day}`} idx={idx} />)
           }
         </Grid>
       </>

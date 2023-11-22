@@ -6,19 +6,39 @@ import { Form as FormikForm } from 'formik'
 import { InputField } from "./Input/Input"
 import { todoSchema } from './ValidationSchema/todoValidation'
 
+import { useAppDispatch } from '../../hooks'
+import { useAppSelector } from '../../hooks'
+import { selectedIdx } from '../../features/editSlice'
+
+import { useSelectSlice } from '../../hooks'
 interface FormProps {
   onClose: () => void
 }
 
 export const Form:FC<FormProps> = ({ onClose }) => {
+  const idx = useAppSelector(selectedIdx)
+  
+  const dispatch = useAppDispatch()
+
+  const returnSlice = useSelectSlice()
+
+
   return (
     <Formik initialValues={{ name: '', priority: '' }} validationSchema={todoSchema} onSubmit={(values, { setSubmitting }) => {
         setTimeout(() => {
+          if (idx !== null) {
+            console.log(idx)
+            const selectedSlice = returnSlice(idx)
 
-          alert(JSON.stringify(values, null, 2));
+            const { addTodo } = selectedSlice.dispatch
 
-          setSubmitting(false);
+            alert(JSON.stringify(values, null, 2));
+            
+            dispatch(addTodo({addTodo: values}))
   
+            setSubmitting(false);
+          }
+
           onClose()
         }, 1000);
       }}> 

@@ -7,24 +7,33 @@ export interface DailyInter {
 
 export interface DayInitalStateInter {
   daily: DailyInter | null
+  todos: TodoInter[]
 }
 
-export type PayloadType<T> = {
+interface TodoInter {
+  name: string
+  priority: string
+}
+
+export type PayloadType<T1, T2> = {
   payload: {
-    newDaily: T
+    newDaily: T1,
+    addTodo: T2 
   }
 }
 
-export type DayPayload = PayloadType<DailyInter>
+export type DayPayload = PayloadType<DailyInter, TodoInter>
 
 type DispatchType<T> = ActionCreatorWithPayload<T> 
 
 interface DispatchGeneric {
-  newDaily: DailyInter
+  newDaily: DailyInter,
+  todos: TodoInter[],
 }
 
 export interface StoreValueInter {
     dispatch: {
       addDayData: DispatchType<DispatchGeneric, string>
+      addTodo: DispatchType<DispatchGeneric, string>
     };
 }

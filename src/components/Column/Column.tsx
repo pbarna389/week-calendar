@@ -7,11 +7,14 @@ import { ModalComponent } from '../Modal'
 
 import { useAppSelector } from '../../hooks'
 import { RootState } from '../../store/WeekStore'
+import { useAppDispatch } from '../../hooks'
+import { SELECT_IDX } from '../../features/editSlice'
 
 type daySliceNames = "mondaySlice" | "thursdaySlice" | "wednesdaySlice" | "tuesdaySlice" | "fridaySlice" | "saturdaySlice" | "sundaySlice"
 
 interface ColumnProps {
   text: string
+  idx: number
 }
 
 const getDayName = (day:string): daySliceNames => {
@@ -21,12 +24,20 @@ const getDayName = (day:string): daySliceNames => {
   return `${baseDate.toLocaleDateString('en-US', { weekday: 'long' }).toLowerCase()}Slice` as daySliceNames
 }
 
-export const Column:FC<ColumnProps> = ({ text }) => {
+export const Column:FC<ColumnProps> = ({ text, idx }) => {
   const { onOpen, isOpen, onClose } = useDisclosure()
 
   const selectedDate: daySliceNames = getDayName(text)
 
   const { daily } = useAppSelector((state: RootState) => state[selectedDate])
+
+  const dispatch = useAppDispatch()
+
+  const handleClick = () => {
+    dispatch(SELECT_IDX(idx))
+
+    onOpen()
+  }
 
   return (
     <>
@@ -39,10 +50,10 @@ export const Column:FC<ColumnProps> = ({ text }) => {
               <IconContext.Provider value={{ size: "5rem"}}>
                 <Icons weatherCode={daily.weatherCode} />
               </IconContext.Provider>
-              <Button colorScheme='gray' onClick={onOpen}>Add a todo for this day</Button>
+              <Button colorScheme='gray' onClick={handleClick}>Add a todo for this day</Button>
             </Center>
         </Container>
-        <ModalComponent isOpen={isOpen} onClose={onClose} />
+        <ModalComponent isOpen={isOpen} onClose={onClose} currentDate={daily.currentDate} />
       </>
     }
     </>

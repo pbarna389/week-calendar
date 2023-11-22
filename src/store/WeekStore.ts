@@ -8,6 +8,7 @@ import thursdaySlice from '../features/thursdaySlice'
 import fridaySlice from '../features/fridaySlice'
 import saturdaySlice from '../features/saturdaySlice'
 import sundaySlice from '../features/sundaySlice'
+import editSlice from '../features/editSlice'
 
 export const calendarStore = configureStore({
   reducer: {
@@ -18,6 +19,7 @@ export const calendarStore = configureStore({
     fridaySlice,
     saturdaySlice,
     sundaySlice,
+    editSlice,
     [weatherAPI.reducerPath]: weatherAPI.reducer,
   },
     middleware: (getDefaultMiddleware) =>
