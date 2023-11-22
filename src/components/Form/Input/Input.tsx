@@ -16,7 +16,7 @@ export const InputField = (props: OtherProps & FieldHookConfig<any>) => {
       {
         props.isSelect ? 
         <Select {...field}>
-          <option value="select" selected disabled>Select a value</option>
+          <option defaultValue={"select"} disabled>Select a value</option>
           <option value="low">Low</option>
           <option value="medium">Medium</option>
           <option value="high">High</option>

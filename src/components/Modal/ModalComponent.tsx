@@ -7,17 +7,16 @@ import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody,
 interface ModalProps {
   isOpen: boolean
   onClose: () => void
-  text: string
 }
 
-export const ModalComponent:FC<ModalProps> = ({ isOpen, onClose, text }) => {
+export const ModalComponent:FC<ModalProps> = ({ isOpen, onClose }) => {
   return (
     <>
       <Modal blockScrollOnMount={false} isOpen={isOpen} onClose={onClose} isCentered >
         <Box backdropFilter='auto' blur='10px'>
           <ModalOverlay backdropFilter='blur' blur='10px' />
           <ModalContent display="flex" alignItems="center" justifyContent="center">
-            <ModalHeader>Add todo for this day: {text}</ModalHeader>
+            <ModalHeader>Add todo for this day</ModalHeader>
             <ModalCloseButton />
             <ModalBody>
               <Form onClose={onClose} />
